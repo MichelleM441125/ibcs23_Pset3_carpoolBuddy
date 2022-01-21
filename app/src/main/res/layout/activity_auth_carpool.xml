@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AuthCarpool">
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#B6ADAD"
+        android:backgroundTintMode="add"
+        android:ems="10"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="128dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="140dp"
+        android:backgroundTint="#E38686"
+        android:onClick="signUp"
+        android:text="Go Sign Up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.779" />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="207dp"
+        android:layout_height="38dp"
+        android:backgroundTint="#B59D9D"
+        android:backgroundTintMode="add"
+        android:ems="10"
+        android:hint="Password (at least 6 characters)"
+        android:inputType="textPassword"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.399"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <Button
+        android:id="@+id/logInButton"
+        android:layout_width="86dp"
+        android:layout_height="61dp"
+        android:layout_marginEnd="160dp"
+        android:backgroundTint="#9E9898"
+        android:onClick="logIn"
+        android:text="Log In"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.513" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-light"
+        android:text="New to CarpoolBuddy?"
+        android:textColor="#DC8484"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/signUpButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="229dp"
+        android:layout_height="22dp"
+        android:layout_marginBottom="28dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Already have an account?"
+        android:textColor="#736363"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

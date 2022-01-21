@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_add_new_vehicle.xml" value="0.37967096453011456" />
+        <entry key="app/src/main/res/layout/activity_add_vehicle.xml" value="0.3394207797882625" />
+        <entry key="app/src/main/res/layout/activity_auth.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_auth_carpool.xml" value="0.2251764700735743" />
+        <entry key="app/src/main/res/layout/activity_authorizaiton.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20885416666666667" />
+        <entry key="app/src/main/res/layout/activity_new_user.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_new_user_register.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.23511387004319878" />
+        <entry key="app/src/main/res/layout/activity_vehicle_info.xml" value="0.2829320326767197" />
+        <entry key="app/src/main/res/layout/activity_vehicles_info.xml" value="0.25625" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

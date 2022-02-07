@@ -8,21 +8,25 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class UserProfileActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private TextView userEmail;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
         userEmail = findViewById(R.id.signInEmail);
 
-        String userEmailDisplay = mAuth.getCurrentUser().getEmail();
+        String userEmailDisplay = user.getEmail();
         userEmail.setText(userEmailDisplay);
     }
 
@@ -37,6 +41,5 @@ public class UserProfileActivity extends AppCompatActivity {
     public void seeVehicles(View v)
     {
         startActivity(new Intent(this, vehiclesInfo.class));
-        System.out.println("ayeeeeee");
     }
 }

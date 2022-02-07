@@ -27,6 +27,7 @@ public class User {
     public String password;
     public String userType;
     public ArrayList<String> ownedVehicles;
+    public double money;
 
     public User()
     {
@@ -39,13 +40,26 @@ public class User {
         this.password = password;
     }
 
-    public User(String name, String userType, String email, String password, ArrayList<String>ownedVehicles)
+    public User(String name, String userType, String email, String password, ArrayList<String>ownedVehicles, double money)
     {
         this.name = name;
         this.userType = userType;
         this.email = email;
         this.password = password;
         this.ownedVehicles = ownedVehicles;
+        this.money = money;
+
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public double getMoney() {
+        return money;
+    }
 }

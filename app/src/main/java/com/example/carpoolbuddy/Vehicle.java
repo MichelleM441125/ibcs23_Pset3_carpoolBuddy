@@ -9,10 +9,15 @@ public class Vehicle {
     public String vehicleID;
     public String ridersUIDs;
     public Boolean open;
-    public double basePrice;
+    public Double basePrice;
+
+    public  Vehicle()
+    {
+
+    }
 
     public Vehicle(String owner, String model, String vehicleType, int capacity, String vehicleID,
-                    Boolean open, double basePrice)
+                    Boolean open, Double basePrice)
     {
         this.owner = owner;
         this.model = model;
@@ -26,4 +31,32 @@ public class Vehicle {
     }
 
 
+
+    public String getModel()
+    {
+        return model;
+    }
+
+    public String getVehicleType()
+    {
+        return vehicleType;
+    }
+
+    public Boolean getOpen()
+    {
+        return open;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public Double getPrice()
+    {
+        return basePrice;
+    }
+
+    public String getVehicleID() {
+        return vehicleID;
+    }
 }

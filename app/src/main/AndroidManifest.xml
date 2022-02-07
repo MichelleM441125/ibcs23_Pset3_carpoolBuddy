@@ -10,10 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CarpoolBuddy">
         <activity
-            android:name=".newUser"
+            android:name=".editVehicle"
             android:exported="true" />
         <activity
-            android:name=".newUserRegister"
+            android:name=".bookVehicleProfile"
+            android:exported="true" />
+        <activity
+            android:name=".vehicleProfile"
+            android:exported="true" />
+        <activity
+            android:name=".bookVehicle"
+            android:exported="true" />
+        <activity
+            android:name=".newUser"
             android:exported="true" />
         <activity
             android:name=".addNewVehicle"

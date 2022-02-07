@@ -3,17 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_add_new_vehicle.xml" value="0.37967096453011456" />
+        <entry key="app/src/main/res/layout/activity_add_new_vehicle.xml" value="0.24823815370743324" />
         <entry key="app/src/main/res/layout/activity_add_vehicle.xml" value="0.3394207797882625" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_auth_carpool.xml" value="0.2251764700735743" />
+        <entry key="app/src/main/res/layout/activity_auth_carpool.xml" value="0.63930332053698" />
         <entry key="app/src/main/res/layout/activity_authorizaiton.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_book_vehicle.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout/activity_book_vehicle_profile.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/layout/activity_edit_vehicle.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20885416666666667" />
         <entry key="app/src/main/res/layout/activity_new_user.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_new_user_register.xml" value="0.25625" />
-        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.23511387004319878" />
+        <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.31783925348628533" />
         <entry key="app/src/main/res/layout/activity_vehicle_info.xml" value="0.2829320326767197" />
-        <entry key="app/src/main/res/layout/activity_vehicles_info.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout/activity_vehicle_profile.xml" value="0.33595496978085343" />
+        <entry key="app/src/main/res/layout/activity_vehicles_info.xml" value="0.310834799620411" />
+        <entry key="app/src/main/res/layout/book_vehicle_row_view.xml" value="0.46534825428303017" />
+        <entry key="app/src/main/res/layout/vehicle_row_view.xml" value="0.33200531208499334" />
       </map>
     </option>
   </component>

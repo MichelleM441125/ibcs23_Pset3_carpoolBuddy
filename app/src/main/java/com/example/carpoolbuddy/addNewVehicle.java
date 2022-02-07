@@ -1,5 +1,6 @@
 package com.example.carpoolbuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -35,47 +36,52 @@ public class addNewVehicle extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         firebase = FirebaseFirestore.getInstance();
-    }
 
-    public Boolean fromValid()
-    {
-        Boolean isValid = true;
-        if(vcModel == null || vcType == null || vcCapacity == null || vcID == null || vcBasePrice == null)
-        {
-            isValid = false;
-        }
-
-        return isValid;
     }
 
     public void addNewVehicle(View v)
     {
-        if(fromValid() == true){
+        // if none of the input is empty
+        if(vcModel != null && vcType != null && vcCapacity != null && vcID != null && vcBasePrice
+                != null){
+
+            //read in the input from the textViews
             String model = vcModel.getText().toString();
             String type = vcType.getText().toString();
             int capacity = Integer.parseInt(vcCapacity.getText().toString());
             String ID = vcID.getText().toString();
             double basePrice = Double.parseDouble(String.valueOf(vcBasePrice.getText()));
 
+            //find the user that is operating
             FirebaseUser addVehicleUser = mAuth.getCurrentUser();
+
             if(addVehicleUser != null)
             {
-                String name = addVehicleUser.getDisplayName();
+                //default the status of the vehicle to "open" and get the user's email
                 Boolean open = true;
-                Vehicle newVehicle = new Vehicle(name, model, type, capacity, ID, open, basePrice);
+                String vcOwner = mAuth.getCurrentUser().getEmail();
 
-                firebase.collection("Vehicles").document(ID).set(newVehicle);
+                //create a new vehicle
+                Vehicle newVehicle = new Vehicle(vcOwner, model, type, capacity, ID, open, basePrice);
+
+                //upload the data to the "Vehicles"collection in firebase
+                firebase.collection("Vehicles").add(newVehicle);
+
+                //send the user back to vehicle info page
+                startActivity(new Intent(this,vehiclesInfo.class));
             }
             else
             {
-                Toast.makeText(getApplicationContext(),"PLEASE LOG IN FIRST", Toast.LENGTH_SHORT).show();
+                // if the user hasn't signed in, tell he or she to do so
+                Toast.makeText(getApplicationContext(),"PLEASE LOG IN FIRST",
+                        Toast.LENGTH_SHORT).show();
             }
         }
         else
         {
-            Toast.makeText(getApplicationContext(),"PLEASE COMPLETE THE INFO", Toast.LENGTH_SHORT).show();
+            // if the user miss a line to fill, tell he or she to complete it
+            Toast.makeText(getApplicationContext(),"PLEASE COMPLETE THE INFO",
+                    Toast.LENGTH_SHORT).show();
         }
-
     }
-    
 }

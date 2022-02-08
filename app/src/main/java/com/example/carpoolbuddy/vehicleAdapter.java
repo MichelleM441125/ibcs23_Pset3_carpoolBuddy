@@ -58,7 +58,6 @@ public class vehicleAdapter extends RecyclerView.Adapter<vehicleViewholder>
         vStatus = status;
     }
 
-
     public interface vehicleListener
     {
         void vehicleOnClick(int position);

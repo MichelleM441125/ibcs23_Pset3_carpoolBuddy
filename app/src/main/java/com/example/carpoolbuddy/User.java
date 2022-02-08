@@ -51,6 +51,10 @@ public class User {
 
     }
 
+    public ArrayList<String> getOwnedVehicles() {
+        return ownedVehicles;
+    }
+
     public String getEmail() {
         return email;
     }

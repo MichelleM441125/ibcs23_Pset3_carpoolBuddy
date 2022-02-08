@@ -62,7 +62,6 @@ public class vehiclesInfo extends AppCompatActivity implements vehicleAdapter.ve
         user = mAuth.getCurrentUser();
         recView = findViewById(R.id.userVehiclesRecView);
 
-
         newAdapter = new vehicleAdapter(models, types, statuses, this);
         recView.setAdapter(newAdapter);
         recView.setLayoutManager(new LinearLayoutManager(this));
@@ -74,6 +73,7 @@ public class vehiclesInfo extends AppCompatActivity implements vehicleAdapter.ve
 
     public void getAndPopulateData()
     {
+        // get all the vehicles that the current user owns
         firebase.collection("Vehicles").whereEqualTo("owner", user.getEmail())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -83,9 +83,12 @@ public class vehiclesInfo extends AppCompatActivity implements vehicleAdapter.ve
                 {
                     for (DocumentSnapshot ds : task.getResult().getDocuments())
                     {
+                        // convert the vehicle documents to Vehicle type
                         Vehicle getVehicle = ds.toObject(Vehicle.class);
+                        // add them into the arraylist
                         vehicleList.add(getVehicle);
                     }
+                    // run through each vehicle in the arraylist to get their model, type, and status
                     for(Vehicle eachVehicle : vehicleList)
                     {
                         String eachModel = eachVehicle.getModel();
@@ -97,11 +100,12 @@ public class vehiclesInfo extends AppCompatActivity implements vehicleAdapter.ve
                         String eachStatus = eachVehicle.getOpen().toString();
                         statuses.add(eachStatus);
                     }
+                    // send the arraylists that contain the info about each vehicle to the adapter
                     newAdapter.newData(models, types, statuses);
                     newAdapter.notifyDataSetChanged();
                 }
 
-                else
+                else // if the current user doesn't own any vehicle:
                 {
                     Toast.makeText(getApplicationContext(), "you don't have any vehicle yet, " +
                             "go add some", Toast.LENGTH_SHORT).show();

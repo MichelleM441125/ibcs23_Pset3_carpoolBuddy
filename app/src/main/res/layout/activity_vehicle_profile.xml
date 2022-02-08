@@ -7,7 +7,7 @@
     tools:context=".vehicleProfile">
 
     <TextView
-        android:id="@+id/bookVehicleNameText"
+        android:id="@+id/VehicleNameText"
         android:layout_width="204dp"
         android:layout_height="61dp"
         android:fontFamily="sans-serif-condensed"
@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookVehicleNameText"
+        app:layout_constraintTop_toBottomOf="@+id/VehicleNameText"
         app:layout_constraintVertical_bias="0.565" />
 
     <Button
@@ -131,7 +131,7 @@
         tools:ignore="TextContrastCheck" />
 
     <TextView
-        android:id="@+id/bookVehicleTypeText"
+        android:id="@+id/VehicleTypeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -139,22 +139,22 @@
         android:text="TextView"
         android:textAlignment="textEnd"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/bookVehicleIdText"
+        app:layout_constraintBottom_toTopOf="@+id/VehicleIdText"
         app:layout_constraintEnd_toEndOf="@+id/view2" />
 
     <TextView
-        android:id="@+id/bookVehicleIdText"
+        android:id="@+id/VehicleIdText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="28dp"
         android:text="TextView"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/bookVehiclePriceText"
+        app:layout_constraintBottom_toTopOf="@+id/VehiclePriceText"
         app:layout_constraintEnd_toEndOf="@+id/view2" />
 
     <TextView
-        android:id="@+id/bookVehiclePriceText"
+        android:id="@+id/VehiclePriceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
@@ -174,5 +174,5 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="@+id/view2" />
-    
+
 </androidx.constraintlayout.widget.ConstraintLayout>

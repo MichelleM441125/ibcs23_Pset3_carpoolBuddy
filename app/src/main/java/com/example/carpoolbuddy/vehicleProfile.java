@@ -15,6 +15,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+//this class is what the user see after they click on to one of the vehicle displayed in VehicleInfo
 public class vehicleProfile extends AppCompatActivity {
 
     private TextView nameTextView;
@@ -33,10 +34,10 @@ public class vehicleProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vehicle_profile);
 
-        nameTextView = findViewById(R.id.bookVehicleNameText);
-        typeTextView = findViewById(R.id.bookVehicleTypeText);
-        IDTextView = findViewById(R.id.bookVehicleIdText);
-        priceTextView = findViewById(R.id.bookVehiclePriceText);
+        nameTextView = findViewById(R.id.VehicleNameText);
+        typeTextView = findViewById(R.id.VehicleTypeText);
+        IDTextView = findViewById(R.id.VehicleIdText);
+        priceTextView = findViewById(R.id.VehiclePriceText);
         openTextView = findViewById(R.id.vehicleOpenText);
 
         mAuth = FirebaseAuth.getInstance();
@@ -50,6 +51,7 @@ public class vehicleProfile extends AppCompatActivity {
         String openText = chosenVC.getOpen().toString();
         String priceText = chosenVC.getPrice().toString();
 
+        // show all the informaiton about the chosen vehicle on the screen
         nameTextView.setText(nameText);
         typeTextView.setText(typeText);
         IDTextView.setText(IdText);
@@ -57,6 +59,7 @@ public class vehicleProfile extends AppCompatActivity {
         openTextView.setText(openText);
     }
 
+    // this method changes the open field of the vehicle in Firestore to "false"
     public void closeVehicle(View x)
     {
         firebase.collection("Vehicles").whereEqualTo("model", chosenVC.getModel())
@@ -75,6 +78,7 @@ public class vehicleProfile extends AppCompatActivity {
         startActivity(new Intent(this, vehiclesInfo.class));
     }
 
+    // this method changes the open field of the vehicle in Firestore to "true"
     public void openVehicle(View x)
     {
         firebase.collection("Vehicles").whereEqualTo("model", chosenVC.getModel())
@@ -93,9 +97,11 @@ public class vehicleProfile extends AppCompatActivity {
         startActivity(new Intent(this, vehiclesInfo.class));
     }
 
+    // this method send the user to update the info of the vehicle
     public void editVehicle(View x)
     {
         Intent intent = new Intent(this, editVehicle.class);
+        // send the name of the vehicle to the editVehicle activity
         intent.putExtra("editV", chosenVC.getModel());
         startActivity(intent);
 

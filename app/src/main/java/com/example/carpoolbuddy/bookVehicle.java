@@ -31,7 +31,6 @@ public class bookVehicle extends AppCompatActivity implements bookVehicleAdapter
     private ArrayList<String> types;
     private ArrayList<Integer> capacities;
     private ArrayList<String> prices;
-    private ArrayList<Integer> spaces;
 
     private FirebaseUser user;
 
@@ -53,7 +52,6 @@ public class bookVehicle extends AppCompatActivity implements bookVehicleAdapter
         types = new ArrayList<>();
         capacities = new ArrayList<>();
         prices = new ArrayList<>();
-        spaces = new ArrayList<>();
 
         newAdapter = new bookVehicleAdapter(models, types, prices, this);
         recView = findViewById(R.id.bookVehicleRecView);
@@ -62,12 +60,13 @@ public class bookVehicle extends AppCompatActivity implements bookVehicleAdapter
 
         user = mAuth.getCurrentUser();
 
+        // read in all the vehicles the user has
         populateData();
     }
 
     public void populateData()
     {
-
+        //get all the open vehicles from the Firestore
         firebase.collection("Vehicles")
                 .whereEqualTo("open", true).get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -76,14 +75,14 @@ public class bookVehicle extends AppCompatActivity implements bookVehicleAdapter
             {
                 if(task.isSuccessful())
                 {
-
                     for (DocumentSnapshot ds : task.getResult().getDocuments())
                     {
+                        // convert the document to vehicles and add them to the list
                         Vehicle getVehicle = ds.toObject(Vehicle.class);
                         vehicleList.add(getVehicle);
-                        System.out.println(vehicleList);
                     }
 
+                    // for each vehicle, get their model name, type, and price
                     for(Vehicle eachVehicle : vehicleList)
                     {
                         String eachModel = eachVehicle.getModel();
@@ -100,12 +99,12 @@ public class bookVehicle extends AppCompatActivity implements bookVehicleAdapter
 
                     }
 
+                    // send the info to the adapter
                     newAdapter.newData(models, types, prices);
                     newAdapter.notifyDataSetChanged();
 
-
                 }
-                else
+                else // if the every vehicle is closed:
                 {
                     Toast.makeText(getApplicationContext(), "No vehicle is available now", Toast.LENGTH_SHORT).show();
                 }

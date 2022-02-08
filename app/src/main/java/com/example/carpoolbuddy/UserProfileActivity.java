@@ -30,6 +30,7 @@ public class UserProfileActivity extends AppCompatActivity {
         userEmail.setText(userEmailDisplay);
     }
 
+
     public void signOut(View v)
     {
         mAuth.signOut();
@@ -38,6 +39,7 @@ public class UserProfileActivity extends AppCompatActivity {
         finish();
     }
 
+    // this method directs the user to see all his or her vehicles
     public void seeVehicles(View v)
     {
         startActivity(new Intent(this, vehiclesInfo.class));

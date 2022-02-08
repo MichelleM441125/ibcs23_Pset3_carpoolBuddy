@@ -51,6 +51,7 @@ public class newUser extends AppCompatActivity {
 
     public void completeSignUp(View v)
     {
+        // read in all the input and create an empty arraylist to store vehicles
         String newUserName = name.getText().toString();
         String newUserType = userType.getText().toString();
         String newUserEmail = userEmail.getText().toString();
@@ -60,25 +61,24 @@ public class newUser extends AppCompatActivity {
 
         mAuth.createUserWithEmailAndPassword(newUserEmail, newUserPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
+            public void onComplete(@NonNull Task<AuthResult> task)
+            {
                 if(task.isSuccessful())
                 {
+                    // create new user and add it to the database
                     User newUser = new User(newUserName, newUserType, newUserEmail, newUserPassword, myVehicles, 300.0);
                     firebase.collection("User").add(newUser);
-
+                    // tell the user he or she successfully signed up
                     Toast.makeText(getApplicationContext(), "Success!", Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mAuth.getCurrentUser();
                     updateUI(user);
                 }
-                else
+                else // if there's anything wrong, tell the user
                 {
                     Toast.makeText(getApplicationContext(), "Oops, something went wrong", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
     }
 
     public void updateUI(FirebaseUser user)

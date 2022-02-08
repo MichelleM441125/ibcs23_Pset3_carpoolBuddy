@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +29,7 @@ public class bookVehicleProfile extends AppCompatActivity {
     private Vehicle chosenVC;
     private ArrayList<String> ridersID;
     private Integer currCap;
+    private String thisUserID;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore firebase;
@@ -38,12 +40,11 @@ public class bookVehicleProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_vehicle_profile);
 
-        bookNameTextView = findViewById(R.id.bookVehicleNameText);
-        bookTypeTextView = findViewById(R.id.bookVehicleTypeText);
-        bookIdTextView = findViewById(R.id.bookVehicleIdText);
-        bookPriceTextView = findViewById(R.id.bookVehiclePriceText);
+        bookNameTextView = findViewById(R.id.bookVehicleName);
+        bookTypeTextView = findViewById(R.id.bookVehicleType);
+        bookIdTextView = findViewById(R.id.bookVehicleID);
+        bookPriceTextView = findViewById(R.id.bookVehiclePrice);
 
-        ridersID = new ArrayList<>();
 
         mAuth = FirebaseAuth.getInstance();
         firebase = FirebaseFirestore.getInstance();
@@ -64,6 +65,7 @@ public class bookVehicleProfile extends AppCompatActivity {
 
     public void book(View x)
     {
+        // get the document ID of the current user
         firebase.collection("User").whereEqualTo("email", user.getEmail())
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -71,25 +73,37 @@ public class bookVehicleProfile extends AppCompatActivity {
             {
                 for (DocumentSnapshot ds : task.getResult().getDocuments())
                 {
-                    String ID = ds.getId();
-                    ridersID.add(ID);
+                    thisUserID = ds.getId();
                 }
             }
         });
 
+        // get the vehicle document via its model name and "bookable" capacity
         firebase.collection("Vehicles").whereEqualTo("model", chosenVC.getModel())
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                .whereNotEqualTo("capacity", 0).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task)
             {
                 for (DocumentSnapshot ds : task.getResult().getDocuments())
                 {
                     Vehicle getVehicle = ds.toObject(Vehicle.class);
+                    // set the new arraylist to the ridersID arraylist of the chosen vehicle
+                    ridersID = getVehicle.getRidersIDs();
+                    // get its current capacity
                     currCap = getVehicle.getCapacity();
-                    Integer newCap = currCap - 1;
+                    // get the ID of the document and use it to update the ridersID arraylist
                     String ID = ds.getId();
-                    firebase.collection("Vehicles").document(ID).update("ridersUIDs", ridersID);
+                    firebase.collection("Vehicles").document(ID).update("ridersIDs", ridersID);
+                    // minus one from the current capacity
+                    Integer newCap = currCap - 1;
+                    // and update the capacity of the chosen vehicle
                     firebase.collection("Vehicles").document(ID).update("capacity", newCap);
+                    if(currCap == 0)
+                    {
+                        Toast.makeText(getApplicationContext(),"Sorry There's No Seat Left",
+                                Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

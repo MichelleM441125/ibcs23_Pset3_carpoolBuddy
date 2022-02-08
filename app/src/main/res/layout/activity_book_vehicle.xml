@@ -10,7 +10,7 @@
         android:id="@+id/bookVehicleNameText2"
         android:layout_width="192dp"
         android:layout_height="127dp"
-        android:fontFamily="sans-serif-condensed"
+        android:fontFamily="cursive"
         android:text="Available Vehicles"
         android:textAlignment="center"
         android:textColor="#4C8F89"

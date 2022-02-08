@@ -59,7 +59,8 @@ public class AuthCarpool extends AppCompatActivity {
         String passwordField = userPassword.getText().toString();
 
         // sign in the user via firebase authentication
-        mAuth.signInWithEmailAndPassword(emailField, passwordField).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+        mAuth.signInWithEmailAndPassword(emailField, passwordField).
+                addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
